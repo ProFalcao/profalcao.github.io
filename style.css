@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+html, body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+h1 {
+    margin: 30px 0 20px 0 ;
+    font-size: 3rem;
+    color:#EA145A;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+    text-align: center;
+}
+h2 {
+    font-size: 2.5rem;
+    color:#EA145A;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+    text-align: center;
+}
+.forms {
+    width: 95%;
+    text-align: right;
+    margin-bottom: 20px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.niveis {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.nivel {
+    position: relative;
+    width: 300px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 4px solid #fff;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s;
+}
+.nivel:hover {
+    border: 4px solid #009688;
+    transition: all 0.2s;
+}
+.label {
+    width: 300px;
+    height: 150px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.label p {
+    transition: all 0.2s;
+}
+.label h2 {
+    text-align: center;
+    color: #fff;
+    transition: all 0.2s;
+}
+.criterios {
+    opacity: 0;
+    color:#fff;
+    font-family: 'Raleway', sans-serif;
+    transition: all 0.2s;
+}
+
+.nivel::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 0px;
+}
+.nivel:hover::before {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.nivel:hover .label h2 {
+    margin-top: -30px;
+    transition: all 0.2s;
+}
+.nivel:hover .label p {
+    margin-top: 8px;
+    transition: all 0.2s;
+}
+.nivel:hover .criterios {
+    opacity: 1;
+    transition: all 0.2s;
+}
+
+.faq {
+    position: fixed;
+    bottom: 40px;
+    right: 50px;
+    filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2));
+}
+.link {
+    width: 200px;
+    background-color: #009688;
+    color: white;
+    padding: 14px;
+    border-radius: 24px 32px 4px 32px;    
+    position: fixed;
+    bottom: 110px;
+    right: 50px;
+    filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2));
+    opacity: 0;
+    transform: scaleY(0);
+    transition: all 0.2s;
+}
+.link h4 {
+    font-size: 1.75rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+}
+.link a {
+    color: #fff;
+    font-weight: normal;
+    /* text-decoration: none; */
+}
+.link ul {
+    margin-top: 20px;
+}
+.link li {
+    font-family: 'Raleway', sans-serif;
+    list-style: disc;    
+    margin-left: 20px;
+    line-height: 1.5rem;
+}
+.show{
+    opacity: 1;
+    transform: scaleY(1);
+    transition: all 0.2s;
+}
+a {
+    font-style: normal;
+    font-weight: 600;
+    font-family: 'Raleway', sans-serif;
+    color:#009688;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin-bottom: 10px;
+}
+p {
+    line-height: 1.5rem;
+    text-align: center;
+    font-style: normal;
+    font-family: 'Raleway', sans-serif;
+}
+em {
+    font-style: normal;
+    font-weight: 600;
+    font-family: 'Raleway', sans-serif;
+    color:#009688;
+}
+footer {
+    height: 35px;
+    border-top: 1px solid gray;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #1c1c1c;
+}
+.rodape {
+    font-size: 0.75rem;
+    color: rgb(198, 198, 198);
+    text-align: right;
+}
+
+@media (max-width: 508px)
+{
+    .nivel {
+        width: 300px;
+        height: 130px;
+    }
+}
