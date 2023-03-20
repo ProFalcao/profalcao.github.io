@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>CSS 2: Display</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:700|Oxygen+Mono|Source+Sans+Pro:700|Source+Serif+Pro&amp;display=swap">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style type="text/css">
+        .CtxtMenu_InfoClose {
+            top: .2em;
+            right: .2em;
+        }
+
+        .CtxtMenu_InfoContent {
+            overflow: auto;
+            text-align: left;
+            font-size: 80%;
+            padding: .4em .6em;
+            border: 1px inset;
+            margin: 1em 0px;
+            max-height: 20em;
+            max-width: 30em;
+            background-color: #EEEEEE;
+            white-space: normal;
+        }
+
+        .CtxtMenu_Info.CtxtMenu_MousePost {
+            outline: none;
+        }
+
+        .CtxtMenu_Info {
+            position: fixed;
+            left: 50%;
+            width: auto;
+            text-align: center;
+            border: 3px outset;
+            padding: 1em 2em;
+            background-color: #DDDDDD;
+            color: black;
+            cursor: default;
+            font-family: message-box;
+            font-size: 120%;
+            font-style: normal;
+            text-indent: 0;
+            text-transform: none;
+            line-height: normal;
+            letter-spacing: normal;
+            word-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            float: none;
+            z-index: 201;
+            border-radius: 15px;
+            /* Opera 10.5 and IE9 */
+            -webkit-border-radius: 15px;
+            /* Safari and Chrome */
+            -moz-border-radius: 15px;
+            /* Firefox */
+            -khtml-border-radius: 15px;
+            /* Konqueror */
+            box-shadow: 0px 10px 20px #808080;
+            /* Opera 10.5 and IE9 */
+            -webkit-box-shadow: 0px 10px 20px #808080;
+            /* Safari 3 & Chrome */
+            -moz-box-shadow: 0px 10px 20px #808080;
+            /* Forefox 3.5 */
+            -khtml-box-shadow: 0px 10px 20px #808080;
+            /* Konqueror */
+            filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true");
+            /* IE */
+        }
+    </style>
+    <style type="text/css">
+        .CtxtMenu_MenuClose {
+            position: absolute;
+            cursor: pointer;
+            display: inline-block;
+            border: 2px solid #AAA;
+            border-radius: 18px;
+            -webkit-border-radius: 18px;
+            /* Safari and Chrome */
+            -moz-border-radius: 18px;
+            /* Firefox */
+            -khtml-border-radius: 18px;
+            /* Konqueror */
+            font-family: "Courier New", Courier;
+            font-size: 24px;
+            color: #F0F0F0
+        }
+
+        .CtxtMenu_MenuClose span {
+            display: block;
+            background-color: #AAA;
+            border: 1.5px solid;
+            border-radius: 18px;
+            -webkit-border-radius: 18px;
+            /* Safari and Chrome */
+            -moz-border-radius: 18px;
+            /* Firefox */
+            -khtml-border-radius: 18px;
+            /* Konqueror */
+            line-height: 0;
+            padding: 8px 0 6px
+                /* may need to be browser-specific */
+        }
+
+        .CtxtMenu_MenuClose:hover {
+            color: white !important;
+            border: 2px solid #CCC !important
+        }
+
+        .CtxtMenu_MenuClose:hover span {
+            background-color: #CCC !important
+        }
+
+        .CtxtMenu_MenuClose:hover:focus {
+            outline: none
+        }
+    </style>
+    <style type="text/css">
+        .CtxtMenu_Menu {
+            position: absolute;
+            background-color: white;
+            color: black;
+            width: auto;
+            padding: 5px 0px;
+            border: 1px solid #CCCCCC;
+            margin: 0;
+            cursor: default;
+            font: menu;
+            text-align: left;
+            text-indent: 0;
+            text-transform: none;
+            line-height: normal;
+            letter-spacing: normal;
+            word-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            float: none;
+            z-index: 201;
+            border-radius: 5px;
+            /* Opera 10.5 and IE9 */
+            -webkit-border-radius: 5px;
+            /* Safari and Chrome */
+            -moz-border-radius: 5px;
+            /* Firefox */
+            -khtml-border-radius: 5px;
+            /* Konqueror */
+            box-shadow: 0px 10px 20px #808080;
+            /* Opera 10.5 and IE9 */
+            -webkit-box-shadow: 0px 10px 20px #808080;
+            /* Safari 3 & Chrome */
+            -moz-box-shadow: 0px 10px 20px #808080;
+            /* Forefox 3.5 */
+            -khtml-box-shadow: 0px 10px 20px #808080;
+            /* Konqueror */
+        }
+
+        .CtxtMenu_MenuItem {
+            padding: 1px 2em;
+            background: transparent;
+        }
+
+        .CtxtMenu_MenuArrow {
+            position: absolute;
+            right: .5em;
+            padding-top: .25em;
+            color: #666666;
+            font-family: null;
+            font-size: .75em
+        }
+
+        .CtxtMenu_MenuActive .CtxtMenu_MenuArrow {
+            color: white
+        }
+
+        .CtxtMenu_MenuArrow.CtxtMenu_RTL {
+            left: .5em;
+            right: auto
+        }
+
+        .CtxtMenu_MenuCheck {
+            position: absolute;
+            left: .7em;
+            font-family: null
+        }
+
+        .CtxtMenu_MenuCheck.CtxtMenu_RTL {
+            right: .7em;
+            left: auto
+        }
+
+        .CtxtMenu_MenuRadioCheck {
+            position: absolute;
+            left: .7em;
+        }
+
+        .CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {
+            right: .7em;
+            left: auto
+        }
+
+        .CtxtMenu_MenuInputBox {
+            padding-left: 1em;
+            right: .5em;
+            color: #666666;
+            font-family: null;
+        }
+
+        .CtxtMenu_MenuInputBox.CtxtMenu_RTL {
+            left: .1em;
+        }
+
+        .CtxtMenu_MenuComboBox {
+            left: .1em;
+            padding-bottom: .5em;
+        }
+
+        .CtxtMenu_MenuSlider {
+            left: .1em;
+        }
+
+        .CtxtMenu_SliderValue {
+            position: absolute;
+            right: .1em;
+            padding-top: .25em;
+            color: #333333;
+            font-size: .75em
+        }
+
+        .CtxtMenu_SliderBar {
+            outline: none;
+            background: #d3d3d3
+        }
+
+        .CtxtMenu_MenuLabel {
+            padding: 1px 2em 3px 1.33em;
+            font-style: italic
+        }
+
+        .CtxtMenu_MenuRule {
+            border-top: 1px solid #DDDDDD;
+            margin: 4px 3px;
+        }
+
+        .CtxtMenu_MenuDisabled {
+            color: GrayText
+        }
+
+        .CtxtMenu_MenuActive {
+            background-color: #606872;
+            color: white;
+        }
+
+        .CtxtMenu_MenuDisabled:focus {
+            background-color: #E8E8E8
+        }
+
+        .CtxtMenu_MenuLabel:focus {
+            background-color: #E8E8E8
+        }
+
+        .CtxtMenu_ContextMenu:focus {
+            outline: none
+        }
+
+        .CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {
+            outline: none
+        }
+
+        .CtxtMenu_SelectionMenu {
+            position: relative;
+            float: left;
+            border-bottom: none;
+            -webkit-box-shadow: none;
+            -webkit-border-radius: 0px;
+        }
+
+        .CtxtMenu_SelectionItem {
+            padding-right: 1em;
+        }
+
+        .CtxtMenu_Selection {
+            right: 40%;
+            width: 50%;
+        }
+
+        .CtxtMenu_SelectionBox {
+            padding: 0em;
+            max-height: 20em;
+            max-width: none;
+            background-color: #FFFFFF;
+        }
+
+        .CtxtMenu_SelectionDivider {
+            clear: both;
+            border-top: 2px solid #000000;
+        }
+
+        .CtxtMenu_Menu .CtxtMenu_MenuClose {
+            top: -10px;
+            left: -10px
+        }
+    </style>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.css">
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/script.js"></script>
+    <style id="MJX-CHTML-styles">
+        mjx-container[jax="CHTML"] {
+            line-height: 0;
+        }
+
+        mjx-container [space="1"] {
+            margin-left: .111em;
+        }
+
+        mjx-container [space="2"] {
+            margin-left: .167em;
+        }
+
+        mjx-container [space="3"] {
+            margin-left: .222em;
+        }
+
+        mjx-container [space="4"] {
+            margin-left: .278em;
+        }
+
+        mjx-container [space="5"] {
+            margin-left: .333em;
+        }
+
+        mjx-container [rspace="1"] {
+            margin-right: .111em;
+        }
+
+        mjx-container [rspace="2"] {
+            margin-right: .167em;
+        }
+
+        mjx-container [rspace="3"] {
+            margin-right: .222em;
+        }
+
+        mjx-container [rspace="4"] {
+            margin-right: .278em;
+        }
+
+        mjx-container [rspace="5"] {
+            margin-right: .333em;
+        }
+
+        mjx-container [size="s"] {
+            font-size: 70.7%;
+        }
+
+        mjx-container [size="ss"] {
+            font-size: 50%;
+        }
+
+        mjx-container [size="Tn"] {
+            font-size: 60%;
+        }
+
+        mjx-container [size="sm"] {
+            font-size: 85%;
+        }
+
+        mjx-container [size="lg"] {
+            font-size: 120%;
+        }
+
+        mjx-container [size="Lg"] {
+            font-size: 144%;
+        }
+
+        mjx-container [size="LG"] {
+            font-size: 173%;
+        }
+
+        mjx-container [size="hg"] {
+            font-size: 207%;
+        }
+
+        mjx-container [size="HG"] {
+            font-size: 249%;
+        }
+
+        mjx-container [width="full"] {
+            width: 100%;
+        }
+
+        mjx-box {
+            display: inline-block;
+        }
+
+        mjx-block {
+            display: block;
+        }
+
+        mjx-itable {
+            display: inline-table;
+        }
+
+        mjx-row {
+            display: table-row;
+        }
+
+        mjx-row>* {
+            display: table-cell;
+        }
+
+        mjx-mtext {
+            display: inline-block;
+        }
+
+        mjx-mstyle {
+            display: inline-block;
+        }
+
+        mjx-merror {
+            display: inline-block;
+            color: red;
+            background-color: yellow;
+        }
+
+        mjx-mphantom {
+            visibility: hidden;
+        }
+
+        _::-webkit-full-page-media,
+        _:future,
+        :root mjx-container {
+            will-change: opacity;
+        }
+
+        mjx-assistive-mml {
+            position: absolute !important;
+            top: 0px;
+            left: 0px;
+            clip: rect(1px, 1px, 1px, 1px);
+            padding: 1px 0px 0px 0px !important;
+            border: 0px !important;
+            display: block !important;
+            width: auto !important;
+            overflow: hidden !important;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        mjx-assistive-mml[display="block"] {
+            width: 100% !important;
+        }
+
+        mjx-c::before {
+            display: block;
+            width: 0;
+        }
+
+        .MJX-TEX {
+            font-family: MJXZERO, MJXTEX;
+        }
+
+        .TEX-B {
+            font-family: MJXZERO, MJXTEX-B;
+        }
+
+        .TEX-I {
+            font-family: MJXZERO, MJXTEX-I;
+        }
+
+        .TEX-MI {
+            font-family: MJXZERO, MJXTEX-MI;
+        }
+
+        .TEX-BI {
+            font-family: MJXZERO, MJXTEX-BI;
+        }
+
+        .TEX-S1 {
+            font-family: MJXZERO, MJXTEX-S1;
+        }
+
+        .TEX-S2 {
+            font-family: MJXZERO, MJXTEX-S2;
+        }
+
+        .TEX-S3 {
+            font-family: MJXZERO, MJXTEX-S3;
+        }
+
+        .TEX-S4 {
+            font-family: MJXZERO, MJXTEX-S4;
+        }
+
+        .TEX-A {
+            font-family: MJXZERO, MJXTEX-A;
+        }
+
+        .TEX-C {
+            font-family: MJXZERO, MJXTEX-C;
+        }
+
+        .TEX-CB {
+            font-family: MJXZERO, MJXTEX-CB;
+        }
+
+        .TEX-FR {
+            font-family: MJXZERO, MJXTEX-FR;
+        }
+
+        .TEX-FRB {
+            font-family: MJXZERO, MJXTEX-FRB;
+        }
+
+        .TEX-SS {
+            font-family: MJXZERO, MJXTEX-SS;
+        }
+
+        .TEX-SSB {
+            font-family: MJXZERO, MJXTEX-SSB;
+        }
+
+        .TEX-SSI {
+            font-family: MJXZERO, MJXTEX-SSI;
+        }
+
+        .TEX-SC {
+            font-family: MJXZERO, MJXTEX-SC;
+        }
+
+        .TEX-T {
+            font-family: MJXZERO, MJXTEX-T;
+        }
+
+        .TEX-V {
+            font-family: MJXZERO, MJXTEX-V;
+        }
+
+        .TEX-VB {
+            font-family: MJXZERO, MJXTEX-VB;
+        }
+
+        mjx-stretchy-v mjx-c,
+        mjx-stretchy-h mjx-c {
+            font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+        }
+
+        @font-face
+
+        /* 0 */
+            {
+            font-family: MJXZERO;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 1 */
+            {
+            font-family: MJXTEX;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 2 */
+            {
+            font-family: MJXTEX-B;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 3 */
+            {
+            font-family: MJXTEX-I;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 4 */
+            {
+            font-family: MJXTEX-MI;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 5 */
+            {
+            font-family: MJXTEX-BI;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 6 */
+            {
+            font-family: MJXTEX-S1;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 7 */
+            {
+            font-family: MJXTEX-S2;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 8 */
+            {
+            font-family: MJXTEX-S3;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 9 */
+            {
+            font-family: MJXTEX-S4;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 10 */
+            {
+            font-family: MJXTEX-A;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 11 */
+            {
+            font-family: MJXTEX-C;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 12 */
+            {
+            font-family: MJXTEX-CB;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 13 */
+            {
+            font-family: MJXTEX-FR;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 14 */
+            {
+            font-family: MJXTEX-FRB;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 15 */
+            {
+            font-family: MJXTEX-SS;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 16 */
+            {
+            font-family: MJXTEX-SSB;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 17 */
+            {
+            font-family: MJXTEX-SSI;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 18 */
+            {
+            font-family: MJXTEX-SC;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 19 */
+            {
+            font-family: MJXTEX-T;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 20 */
+            {
+            font-family: MJXTEX-V;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 21 */
+            {
+            font-family: MJXTEX-VB;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <main>
+
+            <h1>CSS 2: Display</h1>
+
+            <p>Para deixar um documento HTML mais parecido com um sketch, precisamos definir o
+                <em>tamanho</em> e a <em>posição</em> de cada elemento. No entanto, definir tamanho e posição
+                de um elemento é mais que simplesmente escrever algo como "tem altura A, largura
+                B e posição X, Y". Por quê? Porque essas propriedades influenciam e são
+                influenciadas por <em>outros</em> elementos. Por exemplo:
+            </p>
+
+            <ul>
+                <li>
+                    <p>um elemento pode ter um tamanho menor ou maior dependendo do tamanho do seu
+                        pai;</p>
+                </li>
+                <li>
+                    <p>um elemento pode ter um tamanho menor ou maior dependendo da quantidade e do
+                        tamanho dos seus filhos;</p>
+                </li>
+                <li>
+                    <p>um elemento pode ter uma posição mais alta ou mais baixa dependendo da
+                        quantidade e do tamanho dos seus irmãos.</p>
+                </li>
+            </ul>
+
+            <p>Por isso, antes de entrar em detalhes sobre tamanho e posição, vamos entender
+                alguns valores padrão da propriedade <code class="prettybox prettyprint prettyprinted"
+                    style=""><span class="pln">display</span></code>, que define como essas
+                propriedades influenciam e são influenciadas por outros elementos.</p>
+
+            <h2>Display block</h2>
+
+            <p>Pelas regras de formatação dos navegadores mais populares, a maioria dos
+                elementos tem a propriedade</p>
+
+            <pre
+                class="prettybox"><code class="prettyprint prettyprinted" style=""><span class="pln">display</span><span class="pun">:</span><span class="pln"> block</span><span class="pun">;</span></code></pre>
+
+            <p>por padrão. O que essa propriedade significa? De maneira geral, os elementos
+                <code class="prettybox prettyprint prettyprinted" style=""><span class="pln">block</span></code> podem
+                ser descritos como "elementos que ficam um em cima do outro". De
+                maneira mais específica, eles podem ser descritos pelas seguintes
+                características:
+            </p>
+
+            <ol>
+                <li>
+                    <p>por padrão, um elemento <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">block</span></code> fica abaixo do irmão que vem logo antes e
+                        acima do irmão que vem logo depois, ou seja, ele nunca fica ao lado de outro
+                        elemento;</p>
+                </li>
+                <li>
+                    <p>por padrão, um elemento <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">block</span></code> ocupa toda a largura do seu pai, mas isso
+                        pode ser modificado através da propriedade <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">width</span></code>;</p>
+                </li>
+                <li>
+                    <p>por padrão, um elemento <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">block</span></code> ocupa a altura mínima necessária para os seus
+                        filhos caberem, mas isso pode ser modificado através da propriedade <code
+                            class="prettybox prettyprint prettyprinted" style=""><span class="pln">height</span></code>;
+                    </p>
+                </li>
+                <li>
+                    <p>outros elementos respeitam a <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">margin</span></code> e o <code
+                            class="prettybox prettyprint prettyprinted" style=""><span class="pln">padding</span></code>
+                        de um elemento <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">block</span></code>.</p>
+                </li>
+            </ol>
+
+            <p>Todas essas características podem ser observadas no exemplo abaixo. Os elementos
+                <code class="prettybox prettyprint prettyprinted" style=""><span class="pln">header</span></code>, <code
+                    class="prettybox prettyprint prettyprinted" style=""><span class="pln">ul</span></code>, <code
+                    class="prettybox prettyprint prettyprinted" style=""><span class="pln">li</span></code>, <code
+                    class="prettybox prettyprint prettyprinted" style=""><span class="pln">main</span></code>, <code
+                    class="prettybox prettyprint prettyprinted" style=""><span class="pln">h1</span></code>, <code
+                    class="prettybox prettyprint prettyprinted" style=""><span class="pln">p</span></code>, <code
+                    class="prettybox prettyprint prettyprinted" style=""><span class="pln">footer</span></code> são
+                todos <code class="prettybox prettyprint prettyprinted" style=""><span class="pln">block</span></code>
+                por padrão
+                no Chrome.
+            </p>
+
+            <div class="cp_embed_wrapper"><iframe allowfullscreen="true" allowpaymentrequest="true"
+                    allowtransparency="true" class="cp_embed_iframe " frameborder="0" height="300" width="100%"
+                    name="cp_embed_1" scrolling="no"
+                    src="https://codepen.io/hashiprobr/embed/RwaMGgy?theme-id=dark&amp;user=hashiprobr&amp;slug-hash=RwaMGgy&amp;default-tab=html%2Cresult&amp;name=cp_embed_1"
+                    style="width: 100%; overflow:hidden; display:block;" title="CodePen Embed" loading="lazy"
+                    id="cp_embed_RwaMGgy"></iframe></div>
+
+            <h2>Display inline</h2>
+
+            <p>Pelas regras de formatação dos navegadores mais populares, vários elementos têm
+                a propriedade</p>
+
+            <pre
+                class="prettybox"><code class="prettyprint prettyprinted" style=""><span class="pln">display</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">inline</span><span class="pun">;</span></code></pre>
+
+            <p>por padrão. O que essa propriedade significa? De maneira geral, os elementos
+                <code class="prettybox prettyprint prettyprinted" style=""><span class="kwd">inline</span></code> podem
+                ser descritos como "elementos que ficam um ao lado do outro". De
+                maneira mais específica, eles podem ser descritos pelas características abaixo.
+            </p>
+
+            <ol>
+                <li>
+                    <p>Por padrão, um elemento <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="kwd">inline</span></code> que vem depois de outro elemento <code
+                            class="prettybox prettyprint prettyprinted" style=""><span class="kwd">inline</span></code>
+                        fica à direita desse outro elemento, desde que caiba no espaço horizontal do
+                        pai. Se não couber, ele "cai" para a linha de baixo. Em outras palavras, uma
+                        sequência de elementos <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="kwd">inline</span></code> é como uma sequência de palavras em um
+                        texto:
+                        ela "quebra" quando o espaço horizontal acaba.</p>
+                </li>
+                <li>
+                    <p>Por padrão, um elemento <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="kwd">inline</span></code> ocupa a largura mínima necessária para os
+                        seus filhos caberem. Isso <em>não</em> pode ser modificado através da propriedade
+                        <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">width</span></code>. De fato, a propriedade <code
+                            class="prettybox prettyprint prettyprinted" style=""><span class="pln">width</span></code> é
+                        <em>totalmente ignorada.</em>
+                    </p>
+                </li>
+                <li>
+                    <p>Por padrão, um elemento <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="kwd">inline</span></code> ocupa a altura mínima necessária para os
+                        seus filhos caberem. Isso <em>não</em> pode ser modificado através da propriedade
+                        <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">height</span></code>. De fato, a propriedade <code
+                            class="prettybox prettyprint prettyprinted" style=""><span class="pln">height</span></code>
+                        é <em>totalmente ignorada.</em>
+                    </p>
+                </li>
+                <li>
+                    <p>Outros elementos respeitam a <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">margin</span></code> e o <code
+                            class="prettybox prettyprint prettyprinted" style=""><span class="pln">padding</span></code>
+                        <em>horizontais</em> de um
+                        elemento <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="kwd">inline</span></code>, mas <em>não</em> respeitam a <code
+                            class="prettybox prettyprint prettyprinted" style=""><span class="pln">margin</span></code>
+                        e o <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">padding</span></code> <em>verticais</em>
+                        desse elemento. Do ponto de vista dos outros elementos, é como se
+                        <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">margin</span><span class="pun">-</span><span class="pln">top</span></code>,
+                        <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">margin</span><span class="pun">-</span><span class="pln">bottom</span></code>,
+                        <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">padding</span><span class="pun">-</span><span class="pln">top</span></code>,
+                        <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">padding</span><span class="pun">-</span><span class="pln">bottom</span></code>
+                        fossem sempre
+                        zero.
+                    </p>
+                </li>
+            </ol>
+
+            <p>Todas essas características podem ser observadas no exemplo abaixo. Os elementos
+                <code class="prettybox prettyprint prettyprinted" style=""><span class="pln">em</span></code>, <code
+                    class="prettybox prettyprint prettyprinted" style=""><span class="pln">a</span></code>, <code
+                    class="prettybox prettyprint prettyprinted" style=""><span class="pln">tt</span></code>, <code
+                    class="prettybox prettyprint prettyprinted" style=""><span class="pln">strong</span></code>, <code
+                    class="prettybox prettyprint prettyprinted" style=""><span class="pln">small</span></code>, <code
+                    class="prettybox prettyprint prettyprinted" style=""><span class="pln">big</span></code> são todos
+                <code class="prettybox prettyprint prettyprinted" style=""><span class="kwd">inline</span></code> por
+                padrão no
+                Chrome.
+            </p>
+
+            <p>Clique em <em>Edit on CodePen</em> e veja o que acontece quando você aumenta a <code
+                    class="prettybox prettyprint prettyprinted" style=""><span class="pln">margin</span></code>
+                ou o <code class="prettybox prettyprint prettyprinted" style=""><span class="pln">padding</span></code>
+                horizontais (<code class="prettybox prettyprint prettyprinted"
+                    style=""><span class="pln">right</span></code>/<code class="prettybox prettyprint prettyprinted"
+                    style=""><span class="pln">left</span></code>). Depois veja o que acontece quando
+                você aumenta a <code class="prettybox prettyprint prettyprinted"
+                    style=""><span class="pln">margin</span></code> ou o <code
+                    class="prettybox prettyprint prettyprinted" style=""><span class="pln">padding</span></code>
+                verticais (<code class="prettybox prettyprint prettyprinted"
+                    style=""><span class="pln">top</span></code>/<code class="prettybox prettyprint prettyprinted"
+                    style=""><span class="pln">bottom</span></code>). Veja ainda o
+                que acontece quando você descomenta <code class="prettybox prettyprint prettyprinted"
+                    style=""><span class="pln">width</span></code> e <code class="prettybox prettyprint prettyprinted"
+                    style=""><span class="pln">height</span></code>.</p>
+
+            <div class="cp_embed_wrapper"><iframe allowfullscreen="true" allowpaymentrequest="true"
+                    allowtransparency="true" class="cp_embed_iframe " frameborder="0" height="300" width="100%"
+                    name="cp_embed_2" scrolling="no"
+                    src="https://codepen.io/hashiprobr/embed/rNedMPy?theme-id=dark&amp;user=hashiprobr&amp;slug-hash=rNedMPy&amp;default-tab=html%2Cresult&amp;name=cp_embed_2"
+                    style="width: 100%; overflow:hidden; display:block;" title="CodePen Embed" loading="lazy"
+                    id="cp_embed_rNedMPy"></iframe></div>
+
+            <h2>Display inline-block</h2>
+
+            <p>Ainda não acabou! Alguns elementos ainda têm a propriedade</p>
+
+            <pre
+                class="prettybox"><code class="prettyprint prettyprinted" style=""><span class="pln">display</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">inline</span><span class="pun">-</span><span class="pln">block</span><span class="pun">;</span></code></pre>
+
+            <p>por padrão. Como o nome sugere, um elemento <code class="prettybox prettyprint prettyprinted"
+                    style=""><span class="kwd">inline</span><span class="pun">-</span><span class="pln">block</span></code>
+                mistura
+                características de <code class="prettybox prettyprint prettyprinted"
+                    style=""><span class="kwd">inline</span></code> e <code class="prettybox prettyprint prettyprinted"
+                    style=""><span class="pln">block</span></code>. Mais especificamente, mistura a
+                característica 1 de <code class="prettybox prettyprint prettyprinted"
+                    style=""><span class="kwd">inline</span></code> com as características 2, 3, 4 de <code
+                    class="prettybox prettyprint prettyprinted" style=""><span class="pln">block</span></code>. Na
+                verdade, uma versão adaptada da característica 2:</p>
+
+            <ul>
+                <li>um elemento <code class="prettybox prettyprint prettyprinted"
+                        style=""><span class="kwd">inline</span><span class="pun">-</span><span class="pln">block</span></code>
+                    ocupa uma largura padrão, mas isso pode ser
+                    modificado através da propriedade <code class="prettybox prettyprint prettyprinted"
+                        style=""><span class="pln">width</span></code>.</li>
+            </ul>
+
+            <p>Em outras palavras, elementos <code class="prettybox prettyprint prettyprinted"
+                    style=""><span class="kwd">inline</span><span class="pun">-</span><span class="pln">block</span></code>
+                combinam a capacidade de ficar um
+                ao lado do outro com a capacidade de modificar largura e altura através de
+                <code class="prettybox prettyprint prettyprinted" style=""><span class="pln">width</span></code> e <code
+                    class="prettybox prettyprint prettyprinted" style=""><span class="pln">height</span></code>. Além
+                disso, outros elementos respeitam a <code class="prettybox prettyprint prettyprinted"
+                    style=""><span class="pln">margin</span></code> e o
+                <code class="prettybox prettyprint prettyprinted" style=""><span class="pln">padding</span></code> de um
+                elemento <code class="prettybox prettyprint prettyprinted"
+                    style=""><span class="kwd">inline</span><span class="pun">-</span><span class="pln">block</span></code>,
+                independente de serem horizontais ou
+                verticais.
+            </p>
+
+            <p>Todas essas características podem ser observadas no exemplo abaixo. Os elementos
+                <code class="prettybox prettyprint prettyprinted" style=""><span class="pln">img</span></code>, <code
+                    class="prettybox prettyprint prettyprinted" style=""><span class="pln">input</span></code> são todos
+                <code class="prettybox prettyprint prettyprinted"
+                    style=""><span class="kwd">inline</span><span class="pun">-</span><span class="pln">block</span></code>
+                por padrão no Chrome.
+            </p>
+
+            <div class="cp_embed_wrapper"><iframe allowfullscreen="true" allowpaymentrequest="true"
+                    allowtransparency="true" class="cp_embed_iframe " frameborder="0" height="300" width="100%"
+                    name="cp_embed_3" scrolling="no"
+                    src="https://codepen.io/hashiprobr/embed/GRZxNZb?theme-id=dark&amp;user=hashiprobr&amp;slug-hash=GRZxNZb&amp;default-tab=html%2Cresult&amp;name=cp_embed_3"
+                    style="width: 100%; overflow:hidden; display:block;" title="CodePen Embed" loading="lazy"
+                    id="cp_embed_GRZxNZb"></iframe></div>
+
+            <h2>Observações adicionais</h2>
+
+            <ul>
+                <li>
+                    <p>Os valores <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">block</span></code>, <code
+                            class="prettybox prettyprint prettyprinted" style=""><span class="kwd">inline</span></code>
+                        e <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="kwd">inline</span><span class="pun">-</span><span class="pln">block</span></code>
+                        são importantes, mas não os
+                        únicos possíveis para <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">display</span></code>. Vamos ver outros conforme necessário.</p>
+                </li>
+                <li>
+                    <p>Sempre que uma definição de <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">width</span></code>, <code
+                            class="prettybox prettyprint prettyprinted" style=""><span class="pln">height</span></code>,
+                        <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">margin</span><span class="pun">-</span><span class="pln">top</span></code>,
+                        <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">margin</span><span class="pun">-</span><span class="pln">bottom</span></code>,
+                        <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">padding</span><span class="pun">-</span><span class="pln">top</span></code>
+                        ou <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">padding</span><span class="pun">-</span><span class="pln">bottom</span></code>
+                        não estiver funcionando, verifique se o
+                        elemento não tem <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">display</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">inline</span></code>.
+                    </p>
+                </li>
+                <li>
+                    <p>Você pode definir <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">display</span></code> como qualquer outra propriedade CSS. Se
+                        quiser
+                        fazer com que <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">p</span></code> seja <code
+                            class="prettybox prettyprint prettyprinted" style=""><span class="kwd">inline</span></code>,
+                        você pode. Se quiser fazer com que <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">a</span></code> seja
+                        <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">block</span></code>, você pode. Mas isso raramente é necessário.
+                    </p>
+                </li>
+                <li>
+                    <p>Reparou que o último exemplo tem <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">vertical</span><span class="pun">-</span><span class="pln">align</span><span class="pun">:</span><span class="pln"> middle</span></code>?
+                        <em>Cuidado com essa
+                            propriedade.</em> Muitos desenvolvedores iniciantes tentam usá-la para alinhar um
+                        elemento <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">block</span></code> em relação ao seu pai, mas isso só funciona
+                        para alinhar
+                        elementos <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="kwd">inline</span></code> em relação à linha do texto. Lembre-se disso
+                        para não
+                        desperdiçar horas perguntando "por que o <code class="prettybox prettyprint prettyprinted"
+                            style=""><span class="pln">vertical</span><span class="pun">-</span><span class="pln">align</span></code>
+                        não funciona".</p>
+                </li>
+            </ul>
+
+            <p>Agora vocês estão prontos para falar de <a href="posicao.html">posicionamento</a></p>
+
+        </main>
+        <footer>
+            <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
+                <img alt="Creative Commons Attribution-ShareAlike 4.0 International License"
+                    src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+                    title="Creative Commons Attribution-ShareAlike 4.0 International License">
+            </a>
+            © 2023 André Santana, Luiz Durão, Marcelo Hashimoto e Lucas Falcão
+        </footer>
+    </div>
+    <script src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+
+</body>
+
+</html>
