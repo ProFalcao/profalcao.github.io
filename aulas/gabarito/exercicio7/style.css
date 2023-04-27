@@ -1,0 +1,56 @@
+/* NÃO ALTERAR */
+
+.itemPP {
+    height: 40px;
+    width: 87px;
+    background-color: #78E3E3;
+    margin: 8px 8px;
+}
+
+.itemP {
+    height: 45px;
+    width: 240px;
+    background-color: cadetblue;
+    margin: 8px 8px;
+}
+
+.itemM {
+    height: 297px;
+    width: 209px;
+    background-color: gold;
+    margin: 8px 8px;
+}
+
+.itemG {
+    height: 262px;
+    width: 253px;
+    background-color: #DC14B0;
+    margin: 8px 8px;
+}
+.itemGG {
+    height: 311px;
+    width: 306px;
+    background-color: #FF7A00;
+    margin: 8px 8px;
+}
+.itemXG {
+    height: 311px;
+    width: 661px;
+    background-color: crimson;
+    margin: 8px 8px;
+}
+
+.coluna {
+    display: flex;
+    flex-direction: column;
+}
+
+.linha {
+    display: flex;
+    flex-direction: row;
+}
+.space-between {
+    justify-content: space-between;
+}
+
+/* NÃO ALTERAR */
