@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", (event) => {
-
+    
     const button = document.querySelector("#runaway-btn");
     const button2 = document.querySelector("#static-btn");
 
@@ -31,8 +31,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
             } else if (count >= 10) {
             button.style.transform = "scale(1,1)";
             button.style.opacity = "0";
-            button2.style.transform = "scale(4.3,4.3)";
-            button2.style.left = "45%";
+            button2.style.transform = "scale(4.13,4.3)";
+            button2.style.left = "44%";
             button2.style.zIndex = "10";
             }
         });
